@@ -3,6 +3,10 @@ import { Controller, useFieldArray, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import PassengersSchema from "@/schema/passengerSchema";
+import Image from "next/image";
+import users from "/public/usres.png";
+import user from "/public/user.svg"
+import add from "/public/add.svg";
 
 export default function Home() {
   const form = useForm<z.infer<typeof PassengersSchema>>({
@@ -39,8 +43,9 @@ export default function Home() {
   return (
     <form className="  p-5" onSubmit={handleSubmit(onSubmit)}>
       <div className="my-3">
-        <h2 className="font-sans font-bold text-gray-600 text-xl">
-          مشخصات مسافران
+        <h2 className="font-sans font-bold text-gray-600 text-xl flex">
+          <Image src={users} width={25} height={25} alt="مشخصات مسافران" />
+          <p className="pr-2">مشخصات مسافران</p>
         </h2>
       </div>
       <div className="flex justify-between my-10">
@@ -52,8 +57,10 @@ export default function Home() {
             <p>بزرگسال</p>
           </button>
         </div>
-        <div>
-          <p className="text-blue-500 cursor-pointer">انتخاب مسافران سابق</p>
+        <div className="flex items-center align-middle">
+        <Image src={user} width={25} height={25} alt="مشخصات مسافران" />
+
+          <p className="text-blue-500 cursor-pointer pr-3">انتخاب مسافران سابق</p>
         </div>
       </div>
       <ul className="flex flex-wrap flex-grow row-span-3">
@@ -274,7 +281,7 @@ export default function Home() {
         ))}
       </ul>
       <button
-        className="border border-blue-500 hover:bg-blue-100 text-blue-600 font-bold py-2 px-4 rounded-lg ml-3"
+        className="border items-center flex border-blue-500 hover:bg-blue-100 text-blue-600 font-bold py-2 px-4 rounded-lg ml-3"
         disabled={fields.length >= 5}
         type="button"
         onClick={() =>
@@ -291,15 +298,18 @@ export default function Home() {
           })
         }
       >
+          <Image src={add} width={20} height={20} alt="مشخصات مسافران" />
+        <p className="pr-2">
         اضافه کردن مسافر جدید
+        </p>
       </button>
 
-      <button
+      {/* <button
         className="border border-gray-500 text-gray-500 px-4 py-2 rounded-lg hover:bg-gray-100 hover:text-gray-600 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200"
         type="submit"
       >
         ثبت
-      </button>
+      </button> */}
     </form>
   );
 }
