@@ -13,7 +13,11 @@ export default function Home() {
           firstName: "",
           lastName: "",
           gender: "",
-          birthDay: "",
+          birthDay: {
+            day: "",
+            month: "",
+            year: "",
+          },
           nationalCode: "",
         },
       ],
@@ -33,30 +37,47 @@ export default function Home() {
   }
 
   return (
-    <form className="w-90 p-5" onSubmit={handleSubmit(onSubmit)}>
+    <form className="  p-5" onSubmit={handleSubmit(onSubmit)}>
+      <div className="my-3">
+        <h2 className="font-sans font-bold text-gray-600 text-xl">
+          مشخصات مسافران
+        </h2>
+      </div>
+      <div className="flex justify-between my-10">
+        <div>
+          <button
+            disabled
+            className="border border-gray-500 text-gray-500 px-4 py-2 rounded-3xl hover:bg-gray-100 hover:text-gray-600 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200"
+          >
+            <p>بزرگسال</p>
+          </button>
+        </div>
+        <div>
+          <p className="text-blue-500 cursor-pointer">انتخاب مسافران سابق</p>
+        </div>
+      </div>
       <ul className="flex flex-wrap flex-grow row-span-3">
         {fields.map((item, index) => (
           <li
-            className="flex flex-col  align-text-top flex-grow justify-between mt-5"
+            className="flex flex-col align-text-top flex-grow justify-between mt-5"
             key={item.id}
           >
-            <div className="flex flex-row align-text-top flex-grow justify-between mt-5">
-              <h4 className="block">{`مسافر #${index + 1}`}</h4>
-              <hr></hr>
-              <div className="">
-                <label
-                  className="block text-sm font-medium text-gray-700"
+            <div className="flex flex-wrap flex-row align-text-top flex-grow justify-between mt-5">
+              <div className="flex flex-col w-80">
+                {/* <label
+                  className="block text-sm font-medium text-gray-700 mb-4"
                   htmlFor="firstName"
                 >
                   نام(فارسی)
-                </label>
+                </label> */}
                 <Controller
                   name={`passengers.${index}.firstName`}
                   control={control}
                   render={({ field }) => (
                     <input
+                      placeholder=" نام(فارسی)"
                       type="text"
-                      className="border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200"
+                      className="border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200"
                       {...field}
                     />
                   )}
@@ -67,20 +88,21 @@ export default function Home() {
                     : null}
                 </small>
               </div>
-              <div className="">
-                <label
-                  className="block text-sm font-medium text-gray-700"
+              <div className="flex flex-col w-80">
+                {/* <label
+                  className="block text-sm font-medium text-gray-700 mb-4"
                   htmlFor="lastName"
                 >
                   نام خانوادگی(فارسی)
-                </label>
+                </label> */}
                 <Controller
                   name={`passengers.${index}.lastName`}
                   control={control}
                   render={({ field }) => (
                     <input
                       type="text"
-                      className="border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200"
+                      placeholder=" نام خانوادگی(فارسی)"
+                      className="border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200"
                       {...field}
                     />
                   )}
@@ -91,44 +113,53 @@ export default function Home() {
                     : null}
                 </small>
               </div>
-              <div className="d-flex ">
-                <label
-                  className="block text-sm font-medium text-gray-700"
+              <div className="flex flex-col w-80">
+                {/* <label
+                  className="block text-sm font-medium text-gray-700 mb-4"
                   htmlFor="gender"
                 >
                   جنسیت
-                </label>
+                </label> */}
                 <Controller
                   name={`passengers.${index}.gender`}
                   control={control}
                   render={({ field }) => (
-                    <select {...field}>
-                      <option value="male">زن</option>
-                      <option value="female">مرد</option>
+                    <select
+                      placeholder="جنسیت"
+                      defaultValue=""
+                      className="placeholder-shown: border bg-white border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200"
+                      {...field}
+                    >
+                      <option value="" disabled hidden>
+                        جنسیت
+                      </option>
+                      <option value="male">مرد</option>
+                      <option value="female">زن</option>
                     </select>
                   )}
                 />
-                <small className="error">
+                <small className="text-red-400">
                   {errors.passengers
                     ? errors.passengers[index]?.gender?.message
                     : null}
                 </small>
               </div>
-              <div className="">
-                <label
-                  className="block text-sm font-medium text-gray-700"
+              <div className="flex flex-col w-80">
+                {/* <label
+                  className="block text-sm font-medium text-gray-700 mb-4"
                   htmlFor="nationalCode"
                 >
                   کدملی
-                </label>
-                {/*   برای کد ملی یه کد جاوااسکریپتی دارم که معتبر بودن کدملی رو میسنجه ولی الان استفاده نکردم  */}
+                </label> */}
+                {/*   برای کد ملی یه کد جاوااسکریپتی دارم که معتبر بودن کدملی رو میسنجه ولی الان استفاده نکردم ولی میشه در شما اضافه کرد  */}
                 <Controller
                   name={`passengers.${index}.nationalCode`}
                   control={control}
                   render={({ field }) => (
                     <input
                       type="text"
-                      className="border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200"
+                      placeholder="کدملی"
+                      className="border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200"
                       {...field}
                     />
                   )}
@@ -139,9 +170,9 @@ export default function Home() {
                     : null}
                 </small>
               </div>
-              <div className="">
+              <div className="flex flex-col w-80 mt-12">
                 <label
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-sm font-medium text-gray-700 mb-4"
                   htmlFor="birthDay"
                 >
                   تاریخ تولد
@@ -149,37 +180,101 @@ export default function Home() {
                 <Controller
                   name={`passengers.${index}.birthDay`}
                   control={control}
-                  defaultValue=""
                   render={({ field }) => (
-                    <input
-                      type="text"
-                      className="border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200"
-                      {...field}
-                    />
+                    <div className="flex flex-row w-72 border border-gray-300  rounded-lg focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200">
+                      <Controller
+                        name={`passengers.${index}.birthDay.day`}
+                        control={control}
+                        render={({ field }) => (
+                          <select
+                            style={{ width: "100px" }}
+                            placeholder="روز"
+                            defaultValue=""
+                            className="border-l-2  bg-white text-gray-400"
+                            {...field}
+                          >
+                            <option value="" disabled hidden>
+                              روز
+                            </option>
+                            {[...Array(31)].map((_, index) => (
+                              <option key={index + 1} value={index + 1}>
+                                {index + 1}
+                              </option>
+                            ))}
+                          </select>
+                        )}
+                      />
+                      <Controller
+                        name={`passengers.${index}.birthDay.month`}
+                        control={control}
+                        render={({ field }) => (
+                          <select
+                            style={{ width: "100px" }}
+                            placeholder="ماه"
+                            defaultValue=""
+                            className="border-l-2 p-2 bg-white text-gray-400"
+                            {...field}
+                          >
+                            <option value="" disabled hidden>
+                              ماه
+                            </option>
+                            {[...Array(12)].map((_, index) => (
+                              <option key={index + 1} value={index + 1}>
+                                {index + 1}
+                              </option>
+                            ))}
+                          </select>
+                        )}
+                      />
+                      <Controller
+                        name={`passengers.${index}.birthDay.month`}
+                        control={control}
+                        render={({ field }) => (
+                          <select
+                            style={{ width: "100px" }}
+                            placeholder="سال"
+                            defaultValue=""
+                            className=" p-2 bg-white text-gray-400"
+                            {...field}
+                          >
+                            <option value="" disabled hidden>
+                              سال
+                            </option>
+                            {[...Array(1405 - 1209 + 1)].map((_, index) => (
+                              <option key={1209 + index} value={1209 + index}>
+                                {1209 + index}
+                              </option>
+                            ))}
+                          </select>
+                        )}
+                      />
+                    </div>
                   )}
                 />
                 <small className="text-red-400">
                   {errors.passengers
-                    ? errors.passengers[index]?.birthDay?.message
+                    ? errors.passengers[index]?.birthDay?.day?.message
                     : null}
                 </small>
               </div>
-
-              <button
-                className="px-2 py-1 bg-red-500 text-white rounded-md text-sm hover:bg-red-600 focus:outline-none focus:ring focus:ring-red-200"
-                color="failure"
-                type="button"
-                onClick={() => remove(index)}
-              >
-                پاک کردن
-              </button>
+              {/* This empty div ensures that the next element starts on a new row */}
+              <div className="justify-center flex flex-col mt-7 ">
+                <button
+                  className="px-2 py-1 bg-red-500 text-white rounded-lg text-sm hover:bg-red-600 focus:outline-none focus:ring focus:ring-red-200"
+                  color="failure"
+                  type="button"
+                  onClick={() => remove(index)}
+                >
+                  پاک کردن
+                </button>
+              </div>
             </div>
             <div className="border-t w-full  border-gray-300 my-4" />
           </li>
         ))}
       </ul>
       <button
-        className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded ml-1 mr-5"
+        className="border border-blue-500 hover:bg-blue-100 text-blue-600 font-bold py-2 px-4 rounded-lg ml-3"
         disabled={fields.length >= 5}
         type="button"
         onClick={() =>
@@ -188,15 +283,19 @@ export default function Home() {
             lastName: "",
             gender: "",
             nationalCode: "",
-            birthDay: "",
+            birthDay: {
+              day: "",
+              month: "",
+              year: "",
+            },
           })
         }
       >
-        اضافه کردن
+        اضافه کردن مسافر جدید
       </button>
 
       <button
-        className="border border-gray-500 text-gray-500 px-4 py-2 rounded-md hover:bg-gray-100 hover:text-gray-600 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200"
+        className="border border-gray-500 text-gray-500 px-4 py-2 rounded-lg hover:bg-gray-100 hover:text-gray-600 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200"
         type="submit"
       >
         ثبت

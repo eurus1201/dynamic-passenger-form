@@ -1,19 +1,23 @@
-import '../app/globals.css';
-
+import "../app/globals.css";
 
 export const metadata = {
-  title: 'Dynamic form',
-  description: 'a passenger dynamic form with next14 and zod and react hook form',
-}
+  title: "Dynamic form",
+  description:
+    "a passenger dynamic form with next14 and zod and react hook form",
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body >
+        <div className="container justify-center ">
+        {children}
+        </div>
+        </body>
     </html>
-  )
+  );
 }

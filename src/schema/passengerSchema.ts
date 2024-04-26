@@ -44,12 +44,25 @@ const PassengerSchema = z.object({
     .refine((value) => !!value.trim(), {
       message: EMPTY_FIELD_MESSAGE,
     }),
-  birthDay: z
-    .string()
-    .min(10)
-    .max(10)
-    .refine((value) => !!value.trim(), {
-      message: EMPTY_FIELD_MESSAGE,
+    birthDay: z.object({
+      day: z
+        .string()
+        .min(1)
+        .refine((value) => !!value.trim(), {
+          message: EMPTY_FIELD_MESSAGE,
+        }),
+      month: z
+        .string()
+        .min(1)
+        .refine((value) => !!value.trim(), {
+          message: EMPTY_FIELD_MESSAGE,
+        }),
+      year: z
+        .string()
+        .min(1)
+        .refine((value) => !!value.trim(), {
+          message: EMPTY_FIELD_MESSAGE,
+        }),
     }),
 });
 
