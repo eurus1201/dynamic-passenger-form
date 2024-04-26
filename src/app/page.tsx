@@ -197,7 +197,7 @@ export default function Home() {
                             style={{ width: "100px" }}
                             placeholder="روز"
                             defaultValue=""
-                            className="border-l-2  bg-white text-gray-400"
+                            className="border-l-2 rounded-lg bg-white text-gray-400"
                             {...field}
                           >
                             <option value="" disabled hidden>
@@ -241,7 +241,7 @@ export default function Home() {
                             style={{ width: "100px" }}
                             placeholder="سال"
                             defaultValue=""
-                            className=" p-2 bg-white text-gray-400"
+                            className=" p-2 rounded-lg bg-white text-gray-400"
                             {...field}
                           >
                             <option value="" disabled hidden>
@@ -276,7 +276,7 @@ export default function Home() {
                 </button>
               </div>
             </div>
-            <div className="border-t w-full  border-gray-300 my-4" />
+            <div className="border-t w-full  border-gray-300 my-12" />
           </li>
         ))}
       </ul>
